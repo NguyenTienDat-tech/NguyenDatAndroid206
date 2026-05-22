@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph1"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.movieticketmanager.ui.screen.admin.category.CategoryFragment"
+        android:label="categoryFragment"/>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.movieticketmanager.ui.screen.admin.home.HomeFragment"
+        android:label="homeFragment"/>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.movieticketmanager.ui.screen.admin.history.HistoryFragment"
+        android:label="historyFagment"/>
+
+    <fragment
+        android:id="@+id/managerFragment"
+        android:name="com.example.movieticketmanager.ui.screen.admin.manager.ManagerFragment"
+        android:label="managerFragment"/>
+
+</navigation>

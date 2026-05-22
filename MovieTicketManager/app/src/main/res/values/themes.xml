@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MovieTicketManager" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/color_main</item>
+    </style>
+
+    <style name="Theme.MovieTicketManager" parent="Base.Theme.MovieTicketManager" />
+</resources>

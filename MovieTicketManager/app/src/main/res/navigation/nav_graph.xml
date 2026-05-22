@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.movieticketmanager.ui.screen.account.login.LoginFragment"
+        android:label="loginFragment"/>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.movieticketmanager.ui.screen.account.register.RegisterFragment"
+        android:label="registerFragment"/>
+
+    <fragment
+        android:id="@+id/forgetFragment"
+        android:name="com.example.movieticketmanager.ui.screen.account.forget.ForgetFragment"
+        android:label="forgetFragment"/>
+
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.movieticketmanager.ui.screen.account.resetPassword.ResetPassword"
+        android:label="resetPassword">
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>
