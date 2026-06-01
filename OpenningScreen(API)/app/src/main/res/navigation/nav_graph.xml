@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/layout1">
+
+    <fragment
+        android:id="@+id/layout1"
+        android:name="com.example.openningscreen.ui.screen.welcome.WelcomeFragment"
+        android:label="Welcome"/>
+
+    <fragment
+        android:id="@+id/layout2"
+        android:name="com.example.openningscreen.ui.screen.login.LoginFragment"
+        android:label="Login"/>
+
+    <fragment
+        android:id="@+id/layout3"
+        android:name="com.example.openningscreen.ui.screen.register.RegisterFragment"
+        android:label="Register"/>
+
+    <fragment
+        android:id="@+id/layout4"
+        android:name="com.example.openningscreen.ui.screen.forgotpassword.ForgotPasswordFragment"
+        android:label="ForgotPassword"/>
+
+    <fragment
+        android:id="@+id/layout5"
+        android:name="com.example.openningscreen.ui.screen.otp.OtpVerificationFragment"
+        android:label="OtpVerification"/>
+
+    <fragment
+        android:id="@+id/layout6"
+        android:name="com.example.openningscreen.ui.screen.resetpassword.ResetPasswordFragment"
+        android:label="ResetPassword"/>
+
+    <fragment
+        android:id="@+id/layout7"
+        android:name="com.example.openningscreen.ui.screen.success.ResetSuccessFragment"
+        android:label="ResetSuccess">
+        <action
+            android:id="@+id/layout7_layout2"
+            app:destination="@id/layout2"
+            app:popUpTo="@id/layout2"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

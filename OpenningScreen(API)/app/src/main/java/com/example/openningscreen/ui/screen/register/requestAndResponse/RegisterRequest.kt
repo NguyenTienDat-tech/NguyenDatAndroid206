@@ -1,0 +1,7 @@
+package com.example.openningscreen.ui.screen.register.requestAndResponse
+
+data class RegisterRequest (
+    val username: String,
+    val email: String,
+    val password: String
+)
