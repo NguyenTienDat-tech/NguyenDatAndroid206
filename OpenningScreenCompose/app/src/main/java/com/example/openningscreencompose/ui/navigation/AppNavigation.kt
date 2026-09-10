@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.openningscreencompose.ui.screens.auth.login.LoginScreen
 import com.example.openningscreencompose.ui.screens.auth.register.RegisterScreen
+import com.example.openningscreencompose.ui.screens.home_user.book.BookScreen
 
 @Composable
 fun AppNavigation() {
@@ -34,6 +35,9 @@ fun AppNavigation() {
             LoginScreen(
                 onNavigationToRegister = {
                     navController.navigate(Screen.Register.route)
+                },
+                onNavigationUserHome = {
+                    navController.navigate(Screen.Book.route)
                 }
             )
         }
@@ -43,6 +47,12 @@ fun AppNavigation() {
                 onNavigationToLogin = {
                     navController.navigate(Screen.Login.route)
                 }
+            )
+        }
+
+        composable(route = Screen.Book.route) {
+            BookScreen(
+
             )
         }
     }

@@ -38,10 +38,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun WelcomePreview() {
     OpenningScreenComposeTheme {
-        LoginScreen(
-            onNavigationToRegister = {
-
-            }
-        )
+        
     }
 }
