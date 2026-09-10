@@ -46,6 +46,9 @@ fun AppNavigation() {
             RegisterScreen(
                 onNavigationToLogin = {
                     navController.navigate(Screen.Login.route)
+                },
+                onNavigationRegisterSendEmail = {
+                    navController.navigate(Screen.Login.route)
                 }
             )
         }

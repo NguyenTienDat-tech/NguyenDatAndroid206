@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.openningscreencompose.R
+import com.example.openningscreencompose.data.remote.api.ApiAuth
+import com.example.openningscreencompose.data.remote.retrofitInstance.RetrofitInstance
+import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.ui.components.AppButton
 import com.example.openningscreencompose.ui.components.AppTextField
 import com.example.openningscreencompose.ui.theme.AppTheme
@@ -36,20 +40,27 @@ import com.example.openningscreencompose.ui.theme.color_text_tittle
 @Composable
 fun RegisterScreen(
     onNavigationToLogin: () -> Unit,
+    onNavigationRegisterSendEmail: () -> Unit,
 
-    viewModel: RegisterViewModel = viewModel()
+    viewModel: RegisterViewModel = viewModel(
+        factory = RegisterViewModelFactory(
+            AuthRepository(
+                RetrofitInstance.retrofit.create(ApiAuth::class.java)
+            )
+        )
+    )
 ) {
-    LaunchedEffect(key1 = true) {
-        viewModel.state.collect { state ->
-
-        }
-    }
+    val state by viewModel.state.collectAsState()
 
     LaunchedEffect(key1 = true) {
         viewModel.event.collect { event ->
             when (event) {
                 is RegisterEvent.NavigationLogin -> {
                     onNavigationToLogin()
+                }
+
+                is RegisterEvent.NavigationRegisterSendEmail -> {
+                    onNavigationRegisterSendEmail()
                 }
             }
         }
@@ -82,50 +93,47 @@ fun RegisterScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        var nameText by remember { mutableStateOf("") }
         AppTextField(
             label = "Tên đăng nhập",
             placeholder = "Nhập tên đăng nhập",
-            value = nameText,
+            value = state.name,
             onValueChange = { newValue ->
-                nameText = newValue
+                viewModel.onNameChange(newValue)
             },
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var emailText by remember { mutableStateOf("") }
         AppTextField(
             label = "Email",
             placeholder = "Nhập email",
-            value = emailText,
+            value = state.email,
             onValueChange = { newValue ->
-                emailText = newValue
+                viewModel.onEmailChange(newValue)
             },
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var passwordText by remember { mutableStateOf("") }
         AppTextField(
             label = "Mật khẩu",
             placeholder = "Mật khẩu phải có 8 ký tự trở lên",
-            value = passwordText,
+            value = state.password,
             onValueChange = { newValue ->
-                passwordText = newValue
+                viewModel.onPasswordChange(newValue)
             },
             visualTransformation = PasswordVisualTransformation()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var confirmPasswordText by remember { mutableStateOf("") }
+
         AppTextField(
             label = "Nhập lại mật khẩu",
             placeholder = "Nhập mật khẩu",
-            value = confirmPasswordText,
+            value = state.password1,
             onValueChange = { newValue ->
-                confirmPasswordText = newValue
+                viewModel.onPasswordChange1(newValue)
             },
             visualTransformation = PasswordVisualTransformation()
         )
@@ -135,7 +143,7 @@ fun RegisterScreen(
         AppButton(
             text = "Đăng ký",
             onClick = {
-
+                viewModel.onOtpClick()
             },
         )
 
