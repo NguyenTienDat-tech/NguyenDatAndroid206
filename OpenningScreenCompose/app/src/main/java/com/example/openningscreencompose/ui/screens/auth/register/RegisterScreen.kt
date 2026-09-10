@@ -139,7 +139,7 @@ fun RegisterScreen(
             },
         )
 
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier.fillMaxWidth(),

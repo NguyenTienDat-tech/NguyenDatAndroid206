@@ -1,4 +1,13 @@
 package com.example.openningscreencompose.ui.screens.auth.login
 
-class LoginState {
-}
+data class LoginState (
+    val name: String = "",
+    val password: String = "",
+
+    val isPasswordVisible: Boolean = false,
+
+    val isName: Boolean = false,
+    val isPassword: Boolean = false,
+    val nameError: String = "",
+    val passwordError: String = "",
+)

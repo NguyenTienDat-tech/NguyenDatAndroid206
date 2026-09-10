@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,8 +27,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.openningscreencompose.R
+import com.example.openningscreencompose.data.remote.api.ApiAuth
+import com.example.openningscreencompose.data.remote.retrofitInstance.RetrofitInstance
+import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.ui.components.AppButton
 import com.example.openningscreencompose.ui.components.AppTextField
 import com.example.openningscreencompose.ui.theme.AppTheme
@@ -36,20 +42,28 @@ import com.example.openningscreencompose.ui.theme.color_text_tittle
 @Composable
 fun LoginScreen(
     onNavigationToRegister: () -> Unit,
+    onNavigationUserHome: () -> Unit,
 
-    viewModel: LoginViewModel = viewModel()
+    viewModel: LoginViewModel = viewModel(
+        factory = LoginViewModelFactory (
+            AuthRepository(
+                RetrofitInstance.retrofit.create(ApiAuth::class.java)
+            )
+        )
+    )
 ) {
-    LaunchedEffect(key1 = true) {
-        viewModel.state.collect { state ->
-
-        }
-    }
+    // Thu thập State từ ViewModel để tự động cập nhật UI khi dữ liệu thay đổi
+    val state by viewModel.state.collectAsState()
 
     LaunchedEffect(key1 = true) {
         viewModel.event.collect { event ->
             when (event) {
                 is LoginEvent.NavigationRegister -> {
                     onNavigationToRegister()
+                }
+
+                is LoginEvent.NavigationUserHome -> {
+                    onNavigationUserHome()
                 }
             }
         }
@@ -58,7 +72,7 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(24.dp)
     ) {
         Image(
@@ -81,25 +95,23 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        var emailText by remember { mutableStateOf("") }
         AppTextField(
             label = "Tên đăng nhập",
             placeholder = "Nhập tên đăng nhập hoặc email",
-            value = emailText,
+            value = state.name,
             onValueChange = { newValue ->
-                emailText = newValue
+                viewModel.onNameChange(newValue)
             }
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        var passwordText by remember { mutableStateOf("") }
         AppTextField(
             label = "Mật khẩu",
             placeholder = "Nhập mật khẩu",
-            value = passwordText,
+            value = state.password,
             onValueChange = { newValue ->
-                passwordText = newValue
+                viewModel.onPasswordChange(newValue)
             },
             visualTransformation = PasswordVisualTransformation()
         )
@@ -120,11 +132,11 @@ fun LoginScreen(
         AppButton(
             text = "Đăng nhập",
             onClick = {
-
+                viewModel.onLoginClick()
             },
         )
 
-        Spacer(modifier = Modifier.height(92.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
