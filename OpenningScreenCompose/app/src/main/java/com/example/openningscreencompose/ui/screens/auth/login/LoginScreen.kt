@@ -36,6 +36,7 @@ import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.ui.components.AppButton
 import com.example.openningscreencompose.ui.components.AppTextField
 import com.example.openningscreencompose.ui.theme.AppTheme
+import com.example.openningscreencompose.ui.theme.color_error
 import com.example.openningscreencompose.ui.theme.color_primary
 import com.example.openningscreencompose.ui.theme.color_text_tittle
 
@@ -101,8 +102,19 @@ fun LoginScreen(
             value = state.name,
             onValueChange = { newValue ->
                 viewModel.onNameChange(newValue)
-            }
+            },
+            isError = state.isName
         )
+
+        if (state.isName && state.nameError.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.nameError,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -113,8 +125,19 @@ fun LoginScreen(
             onValueChange = { newValue ->
                 viewModel.onPasswordChange(newValue)
             },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = state.isPassword
         )
+
+        if (state.isPassword && state.passwordError.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.passwordError,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(15.dp))
 

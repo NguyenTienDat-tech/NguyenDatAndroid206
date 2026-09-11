@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.openningscreencompose.ui.navigation.AppNavigation
 import com.example.openningscreencompose.ui.screens.auth.login.LoginScreen
+import com.example.openningscreencompose.ui.screens.auth.register.RegisterScreen
+import com.example.openningscreencompose.ui.screens.home_user.book.BookScreen
 import com.example.openningscreencompose.ui.theme.OpenningScreenComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,6 +40,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun WelcomePreview() {
     OpenningScreenComposeTheme {
-        
+        BookScreen()
     }
 }

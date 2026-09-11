@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -34,6 +35,7 @@ import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.ui.components.AppButton
 import com.example.openningscreencompose.ui.components.AppTextField
 import com.example.openningscreencompose.ui.theme.AppTheme
+import com.example.openningscreencompose.ui.theme.color_error
 import com.example.openningscreencompose.ui.theme.color_primary
 import com.example.openningscreencompose.ui.theme.color_text_tittle
 
@@ -70,7 +72,7 @@ fun RegisterScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(24.dp)
     ) {
         Image(
@@ -100,7 +102,18 @@ fun RegisterScreen(
             onValueChange = { newValue ->
                 viewModel.onNameChange(newValue)
             },
+            isError = state.isName
         )
+
+        if (state.isName && state.nameError.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.nameError,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -111,7 +124,18 @@ fun RegisterScreen(
             onValueChange = { newValue ->
                 viewModel.onEmailChange(newValue)
             },
+            isError = state.isEmail
         )
+
+        if (state.isEmail && state.emailError.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.emailError,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -122,8 +146,19 @@ fun RegisterScreen(
             onValueChange = { newValue ->
                 viewModel.onPasswordChange(newValue)
             },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = state.isPassword
         )
+
+        if (state.isPassword && state.passwordError.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.passwordError,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -135,8 +170,19 @@ fun RegisterScreen(
             onValueChange = { newValue ->
                 viewModel.onPasswordChange1(newValue)
             },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            isError = state.isPassword1
         )
+
+        if (state.isPassword1 && state.passwordError1.isNotBlank()) {
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                style = AppTheme.typography.chu2,
+                text = state.passwordError1,
+                color = color_error
+            )
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
