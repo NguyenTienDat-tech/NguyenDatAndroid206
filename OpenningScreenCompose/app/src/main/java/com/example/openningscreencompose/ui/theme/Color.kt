@@ -12,4 +12,10 @@ val color_text_hint = Color(0xFF9191A1)
 
 
 //background
-val color_background = Color(0xFFFFFFFF)
+val color_background = Color(0xFFFAFCFF)
+
+
+//state
+val color_success = Color(0xFF00FF0B)
+val color_error = Color(0xFFCC0900)
+val color_warning = Color(0xFFF7C120)
