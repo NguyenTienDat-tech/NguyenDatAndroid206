@@ -46,6 +46,7 @@ class LoginViewModel(
             val request = LoginRequest(name, password)
             val result = repository.loginUser(request)
 
+
             when (result) {
                 is DataResult.Success -> {
                     _state.value = _state.value.copy(isName = false, isPassword = false, nameError = "", passwordError = "")
