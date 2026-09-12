@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -58,7 +59,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     //navigation compose
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.8.0")
 
     //api
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -67,4 +68,7 @@ dependencies {
 
     //JsonParser
     implementation("com.google.code.gson:gson:2.10.1")
+
+    //Công cụ dịch serializable
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
