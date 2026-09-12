@@ -41,18 +41,18 @@ fun AppNavigation() {
             currentDestination?.hasRoute(RoutesAndEvent.LoginRouter::class) == true ||
             currentDestination?.hasRoute(RoutesAndEvent.RegisterRouter::class) == true
 
-    // Chỉ show BottomBar khi KHÔNG PHẢI là màn hình Auth
+    // Chỉ show BottomBar khi không phải là màn hình Auth
     val showBottomBar = !isAuthScreen
 
 
     Scaffold(
-        // ÉP SCAFFOLD KHÔNG TỰ ĐỘNG CỘNG CHIỀU CAO NÚT HỆ THỐNG VÀO innerPadding
+        //Ép Scafford không tự động cộng chiều cao cảu thanh điều hướng vào innerPadding
         contentWindowInsets = WindowInsets(0.dp),
 
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar(
-                    // ÉP THANH ĐIỀU HƯỚNG BỎ KHOẢNG TRẮNG THỪA BÊN DƯỚI
+                    // Ép thanh điều hướng bỏ khoảng trắng bên dưới
                     windowInsets = WindowInsets(0.dp)
                 ) {
                     bottomNavItems.forEach { item ->
