@@ -99,7 +99,7 @@ fun AppNavigation() {
             //Auth
             composable<RoutesAndEvent.WelcomeRouter> {
                 WelcomeScreen(
-                    onNavigationToLogin = {
+                       onNavigationToLogin = {
                         navController.navigate(RoutesAndEvent.LoginRouter)
                     },
 

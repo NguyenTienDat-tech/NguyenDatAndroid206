@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.openningscreencompose.R
 import com.example.openningscreencompose.ui.components.AppButton
 
@@ -22,7 +22,7 @@ fun WelcomeScreen(
     onNavigationToLogin: () -> Unit,
     onNavigationToRegister: () -> Unit,
 
-    viewModel: WelcomeViewModel = viewModel()
+    viewModel: WelcomeViewModel = hiltViewModel()
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.event.collect { event ->

@@ -24,11 +24,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.openningscreencompose.R
-import com.example.openningscreencompose.data.remote.api.ApiAuth
-import com.example.openningscreencompose.data.remote.retrofitInstance.RetrofitInstance
-import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.ui.components.AppButton
 import com.example.openningscreencompose.ui.components.AppTextField
 import com.example.openningscreencompose.ui.theme.AppTheme
@@ -41,13 +38,7 @@ fun LoginScreen(
     onNavigationToRegister: () -> Unit,
     onNavigationUserHome: () -> Unit,
 
-    viewModel: LoginViewModel = viewModel(
-        factory = LoginViewModelFactory (
-            AuthRepository(
-                RetrofitInstance.retrofit.create(ApiAuth::class.java)
-            )
-        )
-    )
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
     // Thu thập State từ ViewModel để tự động cập nhật UI khi dữ liệu thay đổi
     val state by viewModel.state.collectAsState()
@@ -151,8 +142,7 @@ fun LoginScreen(
         AppButton(
             text = "Đăng nhập",
             onClick = {
-                onNavigationUserHome()
-//                viewModel.onLoginClick()
+                viewModel.onLoginClick()
             },
         )
 

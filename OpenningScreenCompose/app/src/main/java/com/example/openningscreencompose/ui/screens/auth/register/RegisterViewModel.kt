@@ -7,13 +7,17 @@ import com.example.openningscreencompose.core.base.DataResult
 import com.example.openningscreencompose.data.remote.model.calendar.auth.request.RegisterRequest
 import com.example.openningscreencompose.data.repository.AuthRepository
 import com.example.openningscreencompose.data.repository.ErrorTarget
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegisterViewModel(
+
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
     private val repository: AuthRepository
 ): ViewModel() {
     private val _state = MutableStateFlow(RegisterState())

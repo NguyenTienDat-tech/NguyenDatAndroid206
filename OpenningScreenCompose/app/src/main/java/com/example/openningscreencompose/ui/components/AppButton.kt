@@ -33,7 +33,7 @@ fun AppButton (
         colors = ButtonDefaults.buttonColors(
             containerColor = color_primary,
             contentColor = color_background
-        )
+        ),
     ) {
         Text(text = text, style = AppTheme.typography.nut2)
     }
