@@ -16,7 +16,9 @@ import com.example.openningscreencompose.ui.screens.auth.login.LoginScreen
 import com.example.openningscreencompose.ui.screens.auth.register.RegisterScreen
 import com.example.openningscreencompose.ui.screens.home_user.book.BookScreen
 import com.example.openningscreencompose.ui.theme.OpenningScreenComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

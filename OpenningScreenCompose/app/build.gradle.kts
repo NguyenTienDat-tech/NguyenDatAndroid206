@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -71,4 +73,9 @@ dependencies {
 
     //Công cụ dịch serializable
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    //dependency injection
+    implementation("com.google.dagger:hilt-android:2.60.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.60.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 }
