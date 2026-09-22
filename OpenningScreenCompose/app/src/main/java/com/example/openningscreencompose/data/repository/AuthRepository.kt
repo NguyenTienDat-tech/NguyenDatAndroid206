@@ -7,8 +7,12 @@ import com.example.openningscreencompose.data.remote.model.calendar.auth.request
 import com.example.openningscreencompose.data.remote.model.calendar.auth.request.RegisterRequest
 import com.example.openningscreencompose.data.remote.model.calendar.auth.response.LoginResponse
 import com.example.openningscreencompose.data.remote.model.calendar.auth.response.RegisterResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AuthRepository(
+@Singleton
+class AuthRepository @Inject constructor(
     private val apiAuth: ApiAuth
 ): BaseRepository() {
     suspend fun loginUser(request: LoginRequest): DataResult<LoginResponse> {

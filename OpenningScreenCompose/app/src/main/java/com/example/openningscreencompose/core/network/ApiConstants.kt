@@ -2,7 +2,7 @@ package com.example.openningscreencompose.core.network
 
 object ApiConstants {
     //Servers
-    const val BASE_URL = "http://18.143.179.117/"
+    const val BASE_URL = "http://54.169.65.196:8080"
 
 
     //Authentication
